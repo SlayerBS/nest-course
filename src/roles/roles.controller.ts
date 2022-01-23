@@ -4,15 +4,15 @@ import { RolesService } from "./roles.service";
 
 @Controller("roles")
 export class RolesController {
-  constructor(private roleService: RolesService) {}
+  constructor(private rolesService: RolesService) {}
 
   @Post()
-  create(@Body() dto: CreateRoleDto) {
-    return this.roleService.createRole(dto);
+  create(@Body() roleDto: CreateRoleDto) {
+    return this.rolesService.createRole(roleDto);
   }
 
   @Get("/:value")
   getByValue(@Param("value") value: string) {
-    return this.roleService.getRoleByValue(value);
+    return this.rolesService.getRoleByValue(value);
   }
 }

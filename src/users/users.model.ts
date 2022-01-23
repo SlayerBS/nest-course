@@ -6,7 +6,7 @@ import {
   Model,
   Table,
 } from "sequelize-typescript";
-import { Role } from "src/roles/roles.model";
+import { Role } from "../roles/roles.model";
 import { UserRoles } from "src/roles/user-roles.model";
 
 interface UserCreationAttrs {
@@ -56,5 +56,5 @@ export class User extends Model<User> {
   banReason: string;
 
   @BelongsToMany(() => Role, () => UserRoles)
-  roless: Role[];
+  roles: Role[];
 }
