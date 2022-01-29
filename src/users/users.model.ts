@@ -3,11 +3,13 @@ import {
   BelongsToMany,
   Column,
   DataType,
+  HasMany,
   Model,
   Table,
 } from "sequelize-typescript";
 import { Role } from "../roles/roles.model";
 import { UserRoles } from "src/roles/user-roles.model";
+import { Post } from "../posts/post.model";
 
 interface UserCreationAttrs {
   email: string;
@@ -17,7 +19,7 @@ interface UserCreationAttrs {
 @Table({
   tableName: "users",
 })
-export class User extends Model<User> {
+export class User extends Model<User, UserCreationAttrs> {
   @ApiProperty({ example: "1", description: "Unique Identificator" })
   @Column({
     type: DataType.INTEGER,
@@ -57,4 +59,7 @@ export class User extends Model<User> {
 
   @BelongsToMany(() => Role, () => UserRoles)
   roles: Role[];
+
+  @HasMany(() => Post)
+  posts: Post[];
 }
